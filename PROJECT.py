@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import currencyapicom
-
+from PIL import Image, ImageTk
 
 
 #api meghivasa
@@ -130,6 +130,10 @@ class main:
         self.root.geometry('400x300')
         self.is_dark_mode = False
 
+        self.icon_image = Image.open('removebg.png')
+        self.icon_photo = ImageTk.PhotoImage(self.icon_image)
+
+        self.root.iconphoto(False, self.icon_photo)
 
         #grid
         self.root.columnconfigure(0, weight=1)
@@ -191,14 +195,10 @@ class main:
     def update_colors(self):
         if self.is_dark_mode:
             self.root.config(bg='black')
-            self.title_label.config(bg='black', fg='white')
-            self.result_label.config(bg='black', fg='white')
-              # Dark mode for convert button
+
             self.dark_mode_button.config(bg='gray', fg='white', text="Váltás világos módra")
         else:
             self.root.config(bg='white')
-            self.title_label.config(bg='white', fg='black')
-            self.result_label.config(bg='white', fg='black')
 
             self.dark_mode_button.config(bg='lightgray', fg='black', text="Váltás sötét módra")
 
@@ -212,8 +212,3 @@ if __name__ == "__main__":
     window = tk.Tk()
     app = main(window)
     window.mainloop()
-
-
-
-
-
